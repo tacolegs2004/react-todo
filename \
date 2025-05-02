@@ -1,0 +1,54 @@
+import * as React from "react";
+
+const App = () => {
+  const [todos, setTodos] = React.useState([
+    "Clean house",
+    "Fold laundry",
+    "Cook dinner",
+    "Pick up Jess",
+  ]);
+
+  const [todo, setTodo] = React.useState("");
+
+  return (
+    <div>
+      <ul>
+        {todos.map((todo, key) => (
+          <>
+            <li key={key}>{todo}</li>
+
+            <button onClick={() => {
+              if (todos[key] === key) todos.pop()
+            }}>x</button>
+          </>
+        ))}
+      </ul>
+
+      <form
+        onSubmit={(e) => {
+          e.preventDefault()
+          todos.push(todo)
+          setTodo("")
+        }}
+      >
+        <input
+          onChange={(e) => {
+            setTodo(e.target.value)
+            console.log(todo);
+          }}
+          type="text"
+          name="Todo"
+          id="todo"
+          value={todo}
+          autoFocus={true}
+        />
+        <button type="submit">Submit</button>
+        <br />
+        <label htmlFor="Task">Task</label>
+      </form>
+    </div>
+  );
+};
+
+export default App;
+
