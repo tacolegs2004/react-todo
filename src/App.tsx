@@ -1,6 +1,5 @@
 import * as React from "react";
 
-
 const App = () => {
   const [todos, setTodos] = React.useState([
     { name: "Clean house", id: 1 },
@@ -12,8 +11,8 @@ const App = () => {
   const [todo, setTodo] = React.useState("");
 
   const removeTodo = (id: number) => {
-    const updatedTodo = todos.filter((item) => item.id !== id);
-    setTodos(updatedTodo);
+    const updatedTodos = todos.filter((item) => item.id !== id);
+    setTodos(updatedTodos);
   };
 
   return (
@@ -21,13 +20,10 @@ const App = () => {
       {todos.length === 0 && <p>Add a todo.</p>}
       <ul>
         {todos.map((todo, key) => (
-          <div className="test">
+          <div>
             <li key={key}>{todo.name}</li>
 
-            <button onClick={() => removeTodo(todo.id)}
-            >
-              x
-            </button>
+            <button onClick={() => removeTodo(todo.id)}>x</button>
           </div>
         ))}
       </ul>
@@ -40,9 +36,7 @@ const App = () => {
         }}
       >
         <input
-          onChange={(e) => {
-            setTodo(e.target.value)
-          }}
+          onChange={(e) => setTodo(e.target.value)}
           type="text"
           name="Todo"
           id="todo"
